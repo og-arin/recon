@@ -26,7 +26,6 @@ def print_banner():
   ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝
     """, bright=True))
     print(g("  [ Network Reconnaissance Tool ]", bright=True))
-    print(g("  [ Author: Arin | Version: 1.0.0 ]\n"))
 
 
 def print_root_status(root: bool):
