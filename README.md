@@ -1,11 +1,11 @@
 # recon
 
-Network Reconnaissance Tool — built from scratch, no nmap dependency.
+Network Reconnaissance Tool — built from scratch.
 
 ## Install
 
 ```bash
-git clone https://github.com/yourname/recon
+git clone https://github.com/og-arin/recon
 cd recon
 pip install .
 ```
