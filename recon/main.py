@@ -17,7 +17,6 @@ from .report   import export_json, export_pdf, build_filename
 # ─────────────────────────────────────────────
 
 def scan(target: str, ports: list[int], threads: int, timeout: float) -> dict | None:
-    print(g(f"\n  [*] Target: {target}", bright=True))
 
     host = resolve(target)
     if host.get("error") or not host.get("ip"):
@@ -25,7 +24,6 @@ def scan(target: str, ports: list[int], threads: int, timeout: float) -> dict | 
         return None
 
     ip = host["ip"]
-    print(g(f"  [*] Resolved → {ip}"))
 
     data = {
         "target":    target,
@@ -34,28 +32,23 @@ def scan(target: str, ports: list[int], threads: int, timeout: float) -> dict | 
     }
 
     # Geo + Whois
-    print(g("  [*] Fetching geo / whois..."))
     data["geo"]   = get_geo(ip)
     data["whois"] = get_whois(target)
 
     # Port scan
-    print(g(f"  [*] Scanning {len(ports)} ports ({threads} threads)..."))
     scan_result = scan_ports(ip, ports=ports, threads=threads, timeout=timeout)
     data["open_ports"] = scan_result["open_ports"]
     data["services"]   = scan_result["services"]
     data["scan_type"]  = scan_result["scan_type"]
-    print(g(f"  [+] {len(data['open_ports'])} open port(s) found"))
 
     # OS fingerprint (root only)
     if is_root():
-        print(g("  [*] OS fingerprinting..."))
         data["os_fingerprint"] = os_fingerprint(ip)
     else:
         data["os_fingerprint"] = None
 
     # Banner grab
     if data["open_ports"]:
-        print(g("  [*] Grabbing banners..."))
         data["banners"] = grab_all_banners(ip, data["open_ports"])
     else:
         data["banners"] = {}
