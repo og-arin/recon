@@ -1,0 +1,8 @@
+Metadata-Version: 2.1
+Name: recon
+Version: 1.0.0
+Summary: Network Reconnaissance Tool
+Author: Arin
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
